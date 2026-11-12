@@ -13,9 +13,15 @@ export function App() {
   function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (input.length == 0) return;
-    if (ingredients.includes(input.trim())) {
-      alert("Esse ingrediente já foi adicionado! ");
+    const ingredient = input.trim();
+
+    if (!ingredient) return;
+    if (
+      ingredients.some(
+        (item) => item.toLowerCase() === ingredient.toLowerCase(),
+      )
+    ) {
+      alert("Esse ingrediente já foi adicionado!");
       setInput("");
       return;
     }
@@ -26,11 +32,9 @@ export function App() {
   }
 
   function handleDelete(item: string) {
-    const newIngredients = ingredients.filter(
-      (ingredient) => ingredient !== item,
+    setIngredients((current) =>
+      current.filter((ingredient) => ingredient !== item),
     );
-
-    setIngredients(newIngredients);
   }
 
   return (
@@ -57,7 +61,7 @@ export function App() {
 
         {ingredients.length > 0 &&
           ingredients.map((ingredient) => (
-            <div className="mt-2">
+            <div key={ingredient} className="mt-2">
               <Badge className="bg-[#C4DAB5] text-black text-md py-5 px-3">
                 {ingredient}
                 <Button
