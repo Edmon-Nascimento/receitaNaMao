@@ -61,8 +61,7 @@ export function App() {
 
         {ingredients.length > 0 &&
           ingredients.map((ingredient) => (
-            <div key={ingredient} className="mt-2">
-              <Badge className="bg-[#C4DAB5] text-black text-md py-5 px-3">
+              <Badge className="bg-[#C4DAB5] text-black text-md py-5 px-3 my-2 mx-1">
                 {ingredient}
                 <Button
                   className="bg-neutral text-black/80 hover:text-red-500 hover:bg-neutral w-0"
@@ -71,7 +70,6 @@ export function App() {
                   <X></X>
                 </Button>
               </Badge>
-            </div>
           ))}
       </main>
     </>
