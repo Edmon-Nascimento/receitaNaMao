@@ -127,11 +127,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    min-width: 320px;
-    background:
-      radial-gradient(circle at 8% 15%, rgb(245 158 11 / 0.1), transparent 25rem),
-      radial-gradient(circle at 92% 70%, rgb(234 88 12 / 0.08), transparent 28rem),
-      var(--background);
+    min-width: 320px;      
   }
   html {
     @apply font-sans;

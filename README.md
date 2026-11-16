@@ -1,26 +1,99 @@
-# React + TypeScript + Vite + shadcn/ui
+# Receita na Mão
 
-## Configuração da API do Gemini
+Receita na Mão is a web application that uses the ingredients available in
+your kitchen to generate recipe suggestions with the Google Gemini API. Add
+ingredients, remove them when needed, and request a complete recipe with
+description, quantities, preparation steps, and estimated cooking time.
 
-A função [`api/generate-recipe.ts`](./api/generate-recipe.ts) precisa de uma
-chave configurada no ambiente do servidor. No Vercel, crie a variável
-`GEMINI_API_KEY` em **Settings > Environment Variables** e habilite-a para o
-ambiente usado pelo deploy (Preview e/ou Production). Depois, faça um novo
-deploy: alterações de variáveis não atualizam deployments já publicados.
+The project is built with React, TypeScript, Vite, Tailwind CSS, shadcn/ui, and
+the Vercel Functions runtime.
 
-Para desenvolvimento local com a função `/api`, crie um arquivo `.env.local`
-na raiz e execute `bunx vercel dev`. Não use `bun run dev` nesse caso: esse
-comando inicia apenas o Vite e não executa as funções da pasta `api/`.
+## Requirements
 
-```env
-GEMINI_API_KEY=sua_chave_do_google_ai_studio
+- Node.js 20 or newer
+- Bun 1.0 or newer
+- A Google AI Studio API key
+
+## Installation
+
+Clone the repository and install its dependencies:
+
+```bash
+git clone https://github.com/Edmon-Nascimento/receitaNaMao.git
+cd receitaNaMao
+bun install
 ```
 
-Não use `VITE_GEMINI_API_KEY`: variáveis com esse prefixo ficam expostas no
-navegador. Também é possível usar `GOOGLE_API_KEY` como alternativa, mas
-`GEMINI_API_KEY` é o nome recomendado.
+If you prefer npm, use `npm install` instead.
 
-This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
+## Gemini API configuration
+
+The [`api/generate-recipe.ts`](./api/generate-recipe.ts) function requires a
+server-side API key. Create a key in
+[Google AI Studio](https://aistudio.google.com/apikey), then create a
+`.env.local` file in the project root:
+
+```env
+GEMINI_API_KEY=your_google_ai_studio_key
+```
+
+The application also accepts `GOOGLE_API_KEY`, but `GEMINI_API_KEY` is the
+recommended name. Never use `VITE_GEMINI_API_KEY`: variables with the `VITE_`
+prefix are exposed in the browser.
+
+`.env.local` is ignored by Git. Never commit your API key.
+
+## Running locally
+
+Use the Vercel development server so the frontend and the `/api` function run
+together:
+
+```bash
+bunx vercel dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+Do not use `bun run dev` to test recipe generation. That command starts Vite
+only and does not execute functions in the `api/` directory.
+
+## How to use
+
+1. Enter one or more available ingredients in the input field.
+2. Click **Add ingredient**.
+3. Repeat the process for all ingredients you want to use.
+4. Remove an ingredient with its close button if necessary.
+5. Click **Generate recipe**.
+6. Read the generated recipe in the result card.
+
+The application prevents duplicate ingredients and displays errors when the
+API is unavailable or the request is invalid.
+
+## Available scripts
+
+```bash
+bun run dev        # Start Vite only
+bun run build      # Type-check and create a production build
+bun run typecheck  # Run the TypeScript compiler without emitting files
+bun run lint       # Run ESLint
+bun run format     # Format TypeScript and TSX files
+bun run preview    # Preview the production build
+```
+
+For local API development, use `bunx vercel dev` as described above.
+
+## Project structure
+
+```text
+api/
+  generate-recipe.ts    Gemini-backed server function
+src/
+  App.tsx               Main recipe generation interface
+  index.css             Global styles and design tokens
+  components/
+    Header.tsx           Application header
+    ui/                  Reusable UI components
+```
 
 ## Adding components
 
