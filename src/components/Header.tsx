@@ -3,20 +3,24 @@ import { Button } from "./ui/button";
 
 export default function Header() {
   return (
-    <header className="flex justify-between px-5 py-7 bg-white shadow">
-      <div className="flex items-center gap-1">
-        <ChefHat size={50} />
-        <h1 className="text-xl font-bold">
+    <header className="border-b border-orange-900/10 bg-[#fffaf3]/90 px-4 py-4 shadow-[0_8px_30px_rgb(124_45_18/0.06)] backdrop-blur-md sm:px-8 sm:py-5">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-orange-600 text-orange-50 shadow-lg shadow-orange-900/15 sm:size-12">
+            <ChefHat size={27} strokeWidth={2.2} />
+          </div>
+          <h1 className="text-lg leading-[0.9] font-bold text-orange-950 sm:text-xl">
           Receita <br />
           na Mão
-        </h1>
-      </div>
+          </h1>
+        </div>
 
-      <div className="flex items-center gap-2">
-        <Button>
-          <Book />
-          <span className="text-md">Meus Pratos</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button className="h-10 rounded-full border border-orange-200 bg-orange-50 px-3 text-orange-900 shadow-sm hover:bg-orange-100 sm:px-4">
+            <Book />
+            <span className="hidden text-sm sm:inline">Meus Pratos</span>
+          </Button>
+        </div>
       </div>
     </header>
   );
