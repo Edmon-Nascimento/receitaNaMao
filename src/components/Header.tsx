@@ -1,5 +1,4 @@
-import { Book, ChefHat } from "lucide-react";
-import { Button } from "./ui/button";
+import { ChefHat } from "lucide-react";
 
 export default function Header() {
   return (
